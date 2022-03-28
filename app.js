@@ -9,6 +9,8 @@ const middileware = (req, res, next) => {
     next();
 }
 
+require("./db/conn");
+
 // Routes
 app.get("/", (req, res) => {
     res.send("This is an home page!");
