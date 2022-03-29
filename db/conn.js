@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const dotenv = require("dotenv");
 
-const DB = "mongodb+srv://sumit:sumit1234@cluster0.ep2ru.mongodb.net/users?retryWrites=true&w=majority";
+
+const DB = process.env.DATABASE;
 
 main().catch(err => console.log(err));
 

@@ -1,7 +1,11 @@
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 
-const port = process.env.PORT || 5000;
+dotenv.config({path:"./config.env"});   // Path for conn.js DB and port
+
+const port = process.env.PORT;
 
 // Middle Ware
 const middileware = (req, res, next) => {
