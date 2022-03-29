@@ -13,13 +13,17 @@ const middileware = (req, res, next) => {
     next();
 }
 
-require("./db/conn");
+require("./db/conn");   // mongoose connection
 
-// const user = require("./model/userSchema"); 
+// const user = require("./model/userSchema"); // Schema
+
+// Routers
+app.use(express.json());
+app.use(require("./router/auth"));
 
 // Routes
 app.get("/", (req, res) => {
-    res.send("This is an home page!");
+    res.send("This is an home page from app.js");
 })
 
 app.get("/about", middileware, (req, res) => {
