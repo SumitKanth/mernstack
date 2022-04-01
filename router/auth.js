@@ -67,7 +67,7 @@ router.post("/register", async (req, res) => {
         }
         
     
-        
+        // Extra code 
         // const usrRegister = await user.save();
         
         // if(usrRegister){
@@ -81,7 +81,53 @@ router.post("/register", async (req, res) => {
         console.log(error);
     }
    
-
 });
+
+/*
+router.get('/signin', async (req, res) => {
+    const {email, cpassword} = req.body;
+    if(!email || !cpassword){
+        res.status(404).json({message: "Plz fill details"});
+    }
+
+    try{
+        const matchEmail = await User.findOne({email:email});
+        const cpass = await User.findOne({cpassword:cpassword});
+        
+        if(!matchEmail || !cpass){
+            res.status(404).json({message:"Invail details"});
+        }
+        else if(matchEmail &&  cpass){
+            res.status(200).json({message: "You are logined"});
+        }
+
+
+    } catch (err) {
+        console.log(err);
+    }       
+
+})
+*/
+
+router.post('/signin', async (req, res) => {
+    try{
+        const {email, password} = req.body;
+
+        if(!email || !password){
+            return res.status(404).json({error: "Plz fill the details"});
+        }
+
+        const userLogin = await User.findOne({email: email});
+        if(!userLogin){
+            res.status(404).json({message: "User error"});
+        }
+        else{
+            res.status(200).json({message: "User login successfully"});
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 module.exports = router;
