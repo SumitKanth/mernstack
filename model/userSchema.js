@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -27,6 +28,18 @@ const userSchema = new mongoose.Schema({
     }
 
 });
+
+
+// We are hashing the password
+userSchema.pre('save', async function (next) {
+    console.log("Hi from inside");
+    if(this.isModified('password')){
+        this.password = await bcrypt.hash(this.password, 12);
+        this.cpassword = await bcrypt.hash(this.cpassword, 12);
+    }
+    next(); // Ab apne aap atuh.js m register wale route m jo save method h wo call ho jaega
+});
+
 
 // Creating collection
 const User = mongoose.model("USER", userSchema);

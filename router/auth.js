@@ -59,11 +59,20 @@ router.post("/register", async (req, res) => {
         const userExist = await User.findOne({email:email});
 
         if(userExist){
-                res.status(422).json({error: "User alreasy their"})
+                res.status(422).json({error: "User already their"});
+        }
+        else if(password != cpassword){
+            res.status(422).json({error: "Password is not maching"});
         }
         else{
             const user = new User({name, email, phone, work, password, cpassword});
-            await user.save();
+            // yaha pe middleware use ho rha h ( userSchema.js m hashing the password )
+            const userRegister = await user.save();
+
+            // console.log(`${user} registered successfully`);
+            // console.log(`${userRegister}`);
+
+            res.status(201).json({message: "User registered successfully"});
         }
         
     
