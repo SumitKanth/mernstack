@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
 
 
 // We are hashing the password
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next) {      // 'save' se phele chlana h function ko
     console.log("Hi from inside");
     if(this.isModified('password')){
         this.password = await bcrypt.hash(this.password, 12);
