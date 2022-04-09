@@ -31,6 +31,10 @@ app.get("/about", middileware, (req, res) => {
 })
 
 app.get("/contact", (req, res) => {
+    res.cookie("Test", "Sumit", {
+        expires: new Date(Date.now() + 30000),
+        httpOnly:true
+    });        // Checking cookie is working in contact page or not
     res.send("This is an contact page!");
 })
 

@@ -140,7 +140,12 @@ router.post('/signin', async (req, res) => {
 
             // JWT
             const token = await userLogin.generateAuthToken();
-            console.log(token);
+            console.log("Token",token);
+
+            res.cookie("jwt", token, {
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
             
             if(!isMatchPass){
                 res.status(404).json({message: "Invalid Credientials pass "});
@@ -148,6 +153,7 @@ router.post('/signin', async (req, res) => {
             else{
                 res.status(200).json({message: "User login successfully"});
             }
+
         }
         else{
             res.status(404).json({message: "Invalid Credientials email"});
