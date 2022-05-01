@@ -54,7 +54,7 @@ userSchema.pre('save', async function (next) {      // 'save' se phele chlana h 
 userSchema.methods.generateAuthToken = async function(){        // method or userSchema ek instance h 
     // auth.js se generateAuthToken laake deta h ye method
     try{
-        let token = jwt.sign({ _id:this._id }, process.env.SECRETKEY);
+        let token = jwt.sign({ _id:this._id }, process.env.SECRETKEY);  // jwt.sign mtlb jb user signin kr rha h
         this.tokens = this.tokens.concat({ token: token });  // Schema ke tokens wale m ye token chle jaega
         await this.save();   // Token ko save krta h
         return token;
