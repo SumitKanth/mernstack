@@ -169,6 +169,7 @@ router.post('/signin', async (req, res) => {
 // about us page 
 router.get("/about", authenticate,  (req, res) => {
     res.send("This is an about page!");
+    res.send(req.rootUser); // ye authenticate wale function se aa rha h authenticate.ja wale page se
 })
 
 module.exports = router;

@@ -6,15 +6,15 @@ const Authenticate = async (req, res, next) => {
 
             const token = req.cookies.jwt;
             const verifyToken = jwt.verify(token, process.env.SECRETKEY);   // verifyToken m user ka pura detail aa chuka h
-            const rootUser = User.findOne({_id: verifyToken._id, "tokens.token": token});
+            const rootUser = User.findOne({_id: verifyToken._id, "tokens.token": token}); // pura data aa gya user ka
 
             if(!rootUser){
                 throw new Error('User not found');
             }
             
                 req.token = token;
-                res.rootUser = rootUser;
-                res.userID = rootUser._id;
+                req.rootUser = rootUser;
+                req.userID = rootUser._id;
 
                 next();
             
