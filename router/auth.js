@@ -173,4 +173,10 @@ router.get("/about", authenticate,  (req, res) => {
     res.send(req.rootUser); // ye authenticate wale function se aa rha h authenticate.ja wale page se
 })
 
+
+// get user data for contact us and home
+router.get("/getdata", authenticate, (req, res) => {
+    res.send(req.rootUser);     // Iska data console m network m milta h
+});
+
 module.exports = router;
