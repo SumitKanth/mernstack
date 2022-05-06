@@ -168,7 +168,8 @@ router.post('/signin', async (req, res) => {
 
 // about us page 
 router.get("/about", authenticate,  (req, res) => {
-    res.send("This is an about page!");
+    // res.send("This is an about page!");  // do baar send nii krte skte header --> Cannot set headers after they are sent to the
+    // client
     res.send(req.rootUser); // ye authenticate wale function se aa rha h authenticate.ja wale page se
 })
 
