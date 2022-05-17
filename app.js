@@ -32,13 +32,13 @@ app.use(require("./router/auth"));
 //     res.send("This is an about page!");
 // })
 
-app.get("/contact", (req, res) => {
-    res.cookie("Test", "Sumit", {
-        expires: new Date(Date.now() + 30000),
-        httpOnly:true
-    });        // Checking cookie is working in contact page or not
-    res.send("This is an contact page!");
-})
+// app.get("/contact", (req, res) => {
+//     res.cookie("Test", "Sumit", {
+//         expires: new Date(Date.now() + 30000),
+//         httpOnly:true
+//     });        // Checking cookie is working in contact page or not
+//     res.send("This is an contact page!");
+// })
 
 app.get("/signin", (req, res) => {
     res.send("This is an signin page!");

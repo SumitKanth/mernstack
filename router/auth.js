@@ -179,4 +179,32 @@ router.get("/getdata", authenticate, (req, res) => {
     res.send(req.rootUser);     // Iska data console m network m milta h
 });
 
+
+router.post("/contact", authenticate, async (req, res) => {
+    try {
+        
+        const {name, email, phone, message} = req.body;
+
+        if(!name || !email || !phone || !message){
+            console.log("Error in contact form");
+            return res.json({error:"Plz fill the contact form"});
+        }
+
+        const userContact = await User.findOne({_id:req.userID});
+
+        if(userContact){
+
+            const userMessage = await userContact.addmessage(name, email, phone, message);
+
+            await userContact.save();
+
+            res.status(201).json({message: "User Contacted successfully"});
+
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports = router;
