@@ -92,7 +92,7 @@ userSchema.methods.addmessage = async function (name, email, phone, message) {
     try{
         this.messages = this.messages.concat({name, email, phone, message});
         await this.save();
-        this.messages;
+        return this.messages;
 
     } catch(err) {
         console.log(err);
