@@ -180,6 +180,7 @@ router.get("/getdata", authenticate, (req, res) => {
 });
 
 
+// Contact us ka page
 router.post("/contact", authenticate, async (req, res) => {
     try {
         
@@ -205,6 +206,14 @@ router.post("/contact", authenticate, async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+});
+
+
+// Logout ka page
+router.get('/logout', (req, res) => {
+    console.log('You are in logout page');
+    res.clearCookie('jwtoken', {path:'/'});
+    res.status(200).send('Logout Page!');
 })
 
 module.exports = router;
