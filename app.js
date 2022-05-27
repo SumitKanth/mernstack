@@ -7,7 +7,10 @@ app.use(cookieParser());
 
 dotenv.config({path:"./config.env"});   // Path for conn.js DB and port
 
-const port = process.env.PORT;
+// Step 1 Heroku copy client to server
+// step 2 use PORT dynamic for heroku
+
+const port = process.env.PORT || 5000;  // process.env.PORT for heroku and 5000 for local system
 
 // Middle Ware
 // const middileware = (req, res, next) => {
@@ -46,10 +49,14 @@ app.get("/signin", (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.send("This is an signup page!");
-})
+});
 
+// Step 3 Heroku npm run build in server/client and this code
+if(process.env.NODE_ENV == "production"){
+    app.use(express.static("client/bulid"));
+}
 
 // Server
 app.listen(port, () => {
     console.log(`Server is running at ${port}`)
-})
+}) 
