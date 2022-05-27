@@ -54,6 +54,10 @@ app.use(require("./router/auth"));
 // Step 3 Heroku npm run build in server/client and this code
 if(process.env.NODE_ENV == "production"){
     app.use(express.static("client/bulid"));
+    const path = require("path");
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
 }
 
 // Server
