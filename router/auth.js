@@ -7,9 +7,7 @@ const authenticate = require("../middleware/authenticate");
 require("../db/conn");
 const User = require("../model/userSchema");
 
-router.get("/", (req, res) => {
-    res.send("This is an home page from router");
-})
+
 
 /*
 // Saving data in online database using promise
