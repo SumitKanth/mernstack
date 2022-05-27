@@ -43,13 +43,13 @@ app.use(require("./router/auth"));
 //     res.send("This is an contact page!");
 // })
 
-app.get("/signin", (req, res) => {
-    res.send("This is an signin page!");
-})
+// app.get("/signin", (req, res) => {
+//     res.send("This is an signin page!");
+// })
 
-app.get("/signup", (req, res) => {
-    res.send("This is an signup page!");
-});
+// app.get("/signup", (req, res) => {
+//     res.send("This is an signup page!");
+// });
 
 // Step 3 Heroku npm run build in server/client and this code
 if(process.env.NODE_ENV == "production"){
